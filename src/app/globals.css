@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
 }
 
 @layer base {
@@ -69,4 +69,24 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply dark:bg-stone-900 bg-stone-100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply dark:bg-stone-700 bg-stone-400;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-stone-500;
 }

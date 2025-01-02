@@ -5,7 +5,6 @@ import { extractRouterConfig } from "uploadthing/server";
 
 import { ourFileRouter } from "src/app/api/uploadthing/core";
 
-import ReactQueryClientProvider from "src/providers/ReactQueryClientProvider";
 import RouteProgressBar from "src/providers/RouteProgressBar";
 import { ThemeProvider } from "src/providers/ThemeProvider";
 
@@ -25,9 +24,9 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Zinx: Inspire, Connect, Grow & Enjoy",
+  title: "Next.Js Starter Kit",
   description:
-    "Turn your ideas into reality with Zinx. Share, connect, and gain user-driven insights to bring your visions to life—all while enjoying a vibrant and entertaining community atmosphere.",
+    "Build faster, scale smarter, and create amazing web experiences with our powerful and flexible Next.js template",
 };
 
 export default function RootLayout({
