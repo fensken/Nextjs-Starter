@@ -10,6 +10,9 @@ import { ThemeProvider } from "src/providers/ThemeProvider";
 
 import { Toaster } from "src/components/ui/sonner";
 
+import { Header } from "src/components/global/Header";
+import { Footer } from "src/components/global/Footer";
+
 import "./globals.css";
 
 const geistSans = localFont({
@@ -55,6 +58,7 @@ export default function RootLayout({
                */
               routerConfig={extractRouterConfig(ourFileRouter)}
             />
+
             {children}
 
             <Toaster position="bottom-center" />

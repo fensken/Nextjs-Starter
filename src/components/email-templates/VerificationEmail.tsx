@@ -65,31 +65,31 @@ export const VerificationEmail = ({ name, url }: VerificationEmailProps) => {
 export default VerificationEmail;
 
 const main = {
-  backgroundColor: "#f0f0f0", // Stone theme background
+  backgroundColor: "#f0f0f0",
   padding: "10px 0",
 };
 
 const container = {
   backgroundColor: "#ffffff",
-  border: "1px solid #e2e8f0", // Soft stone-inspired border
-  borderRadius: "0.5rem", // Shadcn's typical rounded corners
+  border: "1px solid #e2e8f0",
+  borderRadius: "0.5rem",
   padding: "45px",
   boxShadow:
-    "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)", // Subtle shadow
+    "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
 };
 
 const text = {
   fontSize: "16px",
   fontFamily:
-    "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif", // New York style font
-  fontWeight: "400", // Slightly bolder than previous light weight
-  color: "#1f2937", // Dark gray, typical of Shadcn's typography
-  lineHeight: "1.5", // Increased line height for better readability
+    "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+  fontWeight: "400",
+  color: "#1f2937",
+  lineHeight: "1.5",
 };
 
 const button = {
-  backgroundColor: "#0f172a", // Dark background from stone theme
-  borderRadius: "0.375rem", // Shadcn's button border radius
+  backgroundColor: "#0f172a",
+  borderRadius: "0.375rem",
   color: "#ffffff",
   fontFamily:
     "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
@@ -99,12 +99,12 @@ const button = {
   display: "block",
   width: "210px",
   padding: "14px 7px",
-  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)", // Subtle shadow
-  border: "1px solid #1f2937", // Subtle border
+  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+  border: "1px solid #1f2937",
 };
 
 const anchor = {
   textDecoration: "underline",
-  color: "#0f172a", // Matching the button's dark background
+  color: "#0f172a",
   fontWeight: "500",
 };

@@ -1,10 +1,11 @@
-import { betterFetch } from "@better-fetch/fetch";
 import { NextResponse, type NextRequest } from "next/server";
+import { betterFetch } from "@better-fetch/fetch";
+
 import type { SessionType } from "src/lib/auth";
 
 const authRoutes = ["/sign-in", "/sign-up"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
-// const adminRoutes = ["/admin"];
+// const adminRoutes = ["/admin"];   // INFO: Handle admin routes accordingly
 
 export default async function authMiddleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
@@ -15,7 +16,7 @@ export default async function authMiddleware(request: NextRequest) {
   const { data: session } = await betterFetch<SessionType>(
     "/api/auth/get-session",
     {
-      baseURL: process.env.BETTER_AUTH_URL,
+      baseURL: process.env.NEXT_PUBLIC_APP_URL,
       headers: {
         //get the cookie from the request
         cookie: request.headers.get("cookie") || "",
