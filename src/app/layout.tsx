@@ -5,8 +5,9 @@ import { extractRouterConfig } from "uploadthing/server";
 
 import { ourFileRouter } from "src/app/api/uploadthing/core";
 
-import RouteProgressBar from "src/providers/RouteProgressBar";
+import ReactQueryClientProvider from "src/providers/ReactQueryClientProvider";
 import { ThemeProvider } from "src/providers/ThemeProvider";
+import RouteProgressBar from "src/providers/RouteProgressBar";
 
 import { Toaster } from "src/components/ui/sonner";
 
@@ -48,21 +49,29 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <RouteProgressBar>
-            <NextSSRPlugin
-              /**
-               * The `extractRouterConfig` will extract **only** the route configs
-               * from the router to prevent additional information from being
-               * leaked to the client. The data passed to the client is the same
-               * as if you were to fetch `/api/uploadthing` directly.
-               */
-              routerConfig={extractRouterConfig(ourFileRouter)}
-            />
+          <ReactQueryClientProvider>
+            <RouteProgressBar>
+              <NextSSRPlugin
+                /**
+                 * The `extractRouterConfig` will extract **only** the route configs
+                 * from the router to prevent additional information from being
+                 * leaked to the client. The data passed to the client is the same
+                 * as if you were to fetch `/api/uploadthing` directly.
+                 */
+                routerConfig={extractRouterConfig(ourFileRouter)}
+              />
 
-            {children}
+              <div className="min-h-screen flex flex-col bg-background text-foreground">
+                <Header />
 
-            <Toaster position="bottom-center" />
-          </RouteProgressBar>
+                {children}
+
+                <Footer />
+              </div>
+
+              <Toaster position="bottom-center" />
+            </RouteProgressBar>
+          </ReactQueryClientProvider>
         </ThemeProvider>
       </body>
     </html>

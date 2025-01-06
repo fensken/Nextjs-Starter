@@ -1,15 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
-import { Mail, Send, Eye } from "lucide-react";
-
-import {
-  WelcomeDemoEmail,
-  ResetPasswordDemoEmail,
-  EmailTemplateProps,
-} from "src/components/email-templates/Demo";
+import { Mail, Send } from "lucide-react";
 
 import {
   Card,
@@ -39,8 +33,6 @@ interface FormValues {
 }
 
 const EmailDemoPage: React.FC = () => {
-  const [previewMode, setPreviewMode] = useState(false);
-
   const form = useForm<FormValues>({
     defaultValues: {
       emailType: "welcome",
@@ -48,9 +40,6 @@ const EmailDemoPage: React.FC = () => {
       recipientName: "",
     },
   });
-
-  const { watch } = form;
-  const formValues = watch();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const emailData = {
@@ -62,7 +51,7 @@ const EmailDemoPage: React.FC = () => {
 
     await toast.promise(
       async () => {
-        const response = await fetch("/api/email", {
+        const response = await fetch("/api/resend/send-email", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -86,126 +75,96 @@ const EmailDemoPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Mail className="w-5 h-5" />
-            Email Template Demo
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+    <Card className="max-w-xl w-full mx-2">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Mail className="w-5 h-5" />
+          Email Template Demo
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="emailType"
+              render={({ field }) => (
+                <FormItem className="space-y-1">
+                  <FormLabel>Select Email Template</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      className="flex gap-4 mt-2"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="welcome" id="welcome" />
+                        <Label htmlFor="welcome">Welcome Email</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value="reset-password"
+                          id="reset-password"
+                        />
+                        <Label htmlFor="reset-password">Password Reset</Label>
+                      </div>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid gap-4">
               <FormField
                 control={form.control}
-                name="emailType"
+                name="recipientEmail"
+                rules={{
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
+                  },
+                }}
                 render={({ field }) => (
-                  <FormItem className="space-y-1">
-                    <FormLabel>Select Email Template</FormLabel>
+                  <FormItem>
+                    <FormLabel>Recipient Email</FormLabel>
                     <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        value={field.value}
-                        className="flex gap-4 mt-2"
-                      >
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="welcome" id="welcome" />
-                          <Label htmlFor="welcome">Welcome Email</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <RadioGroupItem
-                            value="reset-password"
-                            id="reset-password"
-                          />
-                          <Label htmlFor="reset-password">Password Reset</Label>
-                        </div>
-                      </RadioGroup>
+                      <Input
+                        type="email"
+                        placeholder="recipient@example.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div className="grid gap-4">
-                <FormField
-                  control={form.control}
-                  name="recipientEmail"
-                  rules={{
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Recipient Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="recipient@example.com"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="recipientName"
-                  rules={{ required: "Name is required" }}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Recipient Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="John Doe" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="flex gap-4">
-                <Button
-                  type="button"
-                  onClick={() => setPreviewMode(!previewMode)}
-                  variant="outline"
-                  className="flex items-center gap-2"
-                >
-                  <Eye className="w-4 h-4" />
-                  {previewMode ? "Hide Preview" : "Show Preview"}
-                </Button>
-                <Button type="submit" className="flex items-center gap-2">
-                  <Send className="w-4 h-4" />
-                  Send Email
-                </Button>
-              </div>
-            </form>
-          </Form>
-
-          {previewMode && (
-            <div className="mt-6 border rounded-lg p-4">
-              <h3 className="text-lg font-semibold mb-4">Preview</h3>
-              {formValues.emailType === "welcome" ? (
-                <WelcomeDemoEmail
-                  name={formValues.recipientName || "User"}
-                  url="https://app.zinx.com/verify"
-                />
-              ) : (
-                <ResetPasswordDemoEmail
-                  name={formValues.recipientName || "User"}
-                  url="https://app.zinx.com/reset-password"
-                />
-              )}
+              <FormField
+                control={form.control}
+                name="recipientName"
+                rules={{ required: "Name is required" }}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Recipient Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+
+            <Button type="submit" className="flex items-center gap-2">
+              <Send className="w-4 h-4" />
+              Send Email
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };
 

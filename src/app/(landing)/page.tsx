@@ -8,14 +8,10 @@ import { FeaturesSection } from "./_components/FeaturesSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <Header />
-      <main className="flex-grow flex flex-col gap-24 px-6 py-12">
-        <HeroSection />
-        <FeaturesSection />
-      </main>
-      <Footer />
-    </div>
+    <main className="flex-grow flex flex-col gap-24 px-6 py-12">
+      <HeroSection />
+      <FeaturesSection />
+    </main>
   );
 }
 

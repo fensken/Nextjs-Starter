@@ -5,6 +5,7 @@ import {
   Upload,
   FormInput,
   Palette,
+  Mail,
 } from "lucide-react";
 
 export const features = [
@@ -13,6 +14,14 @@ export const features = [
     description:
       "Secure authentication powered by BetterAuth with social logins and magic links",
     icon: Lock,
+  },
+  {
+    title: "Email",
+    description:
+      "Automate emails and email marketing with resend and react-email.",
+    icon: Mail,
+    link: "/docs/email",
+    demoLink: "/demo/email",
   },
   {
     title: "Database",
@@ -36,6 +45,8 @@ export const features = [
     title: "Form Handling",
     description: "Powerful form validation and handling with React Hook Form",
     icon: FormInput,
+    link: "/docs/form",
+    demoLink: "/demo/form",
   },
   {
     title: "Theming",

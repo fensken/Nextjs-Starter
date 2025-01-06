@@ -2,6 +2,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 
 import { authClient } from "src/lib/auth-client";
@@ -14,14 +15,17 @@ export const Header = () => {
 
   return (
     <header className="p-6 flex justify-between items-center border-b">
-      <Image
-        className="dark:invert"
-        src="/next.svg"
-        alt="Next.js logo"
-        width={80}
-        height={16}
-        priority
-      />
+      <Link href="/">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={80}
+          height={16}
+          priority
+        />
+      </Link>
+
       <div className="flex items-center gap-4">
         <ThemeToggle />
         <Button
