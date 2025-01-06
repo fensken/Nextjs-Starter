@@ -12,7 +12,7 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
-  plugins: [openAPI(), nextCookies(), username()], // INFO: remove username if app does not require
+  plugins: [openAPI(), nextCookies(), username()], // INFO: Remove username if app does not require
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,

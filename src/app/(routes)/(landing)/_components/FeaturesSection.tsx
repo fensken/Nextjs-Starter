@@ -1,5 +1,3 @@
-"use client";
-
 import { features } from "src/constants/features";
 
 import { FeatureCard } from "./FeatureCard";

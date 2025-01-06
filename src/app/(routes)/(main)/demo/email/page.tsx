@@ -46,7 +46,7 @@ const EmailDemoPage: React.FC = () => {
       type: data.emailType,
       email: data.recipientEmail,
       name: data.recipientName,
-      url: `https://app.zinx.com/${data.emailType === "welcome" ? "verify" : "reset-password"}`,
+      url: process.env.NEXT_PUBLIC_APP_URL, // INFO: Add redirect url accordingly
     };
 
     await toast.promise(

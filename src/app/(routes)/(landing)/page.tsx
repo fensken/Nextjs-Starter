@@ -1,7 +1,3 @@
-"use client";
-
-import { Footer } from "src/components/global/Footer";
-import { Header } from "src/components/global/Header";
 import { Button } from "src/components/ui/button";
 
 import { FeaturesSection } from "./_components/FeaturesSection";

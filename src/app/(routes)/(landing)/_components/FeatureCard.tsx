@@ -1,4 +1,5 @@
-"use client";
+import Link from "next/link";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "src/components/ui/button";
 import {
@@ -8,8 +9,6 @@ import {
   CardDescription,
   CardFooter,
 } from "src/components/ui/card";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 type FeatureCardProps = {
   title: string;
@@ -26,8 +25,6 @@ export const FeatureCard = ({
   link,
   demoLink,
 }: FeatureCardProps) => {
-  const router = useRouter();
-
   return (
     <Card className="group hover:shadow-lg transition-shadow">
       <CardHeader>
@@ -43,22 +40,18 @@ export const FeatureCard = ({
         <CardFooter className="flex flex-col sm:flex-row gap-3 sm:justify-between items-stretch sm:items-center">
           {link && (
             <Button
-              role="link"
               variant="ghost"
               className="text-sm text-muted-foreground hover:text-foreground w-full sm:w-auto"
-              onClick={() => router.push(link)}
             >
-              Documentation
+              <Link href={link}>Documentation</Link>
             </Button>
           )}
+
           {demoLink && (
-            <Button
-              role="link"
-              variant="default"
-              className="text-sm gap-2 w-full sm:w-auto"
-              onClick={() => router.push(demoLink)}
-            >
-              Try Now <ArrowRight className="h-4 w-4" />
+            <Button variant="default" className="text-sm w-full sm:w-auto">
+              <Link href={demoLink} className="flex gap-2">
+                Try Now <ArrowRight className="h-4 w-4" />
+              </Link>
             </Button>
           )}
         </CardFooter>

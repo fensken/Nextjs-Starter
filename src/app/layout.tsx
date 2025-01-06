@@ -11,9 +11,6 @@ import RouteProgressBar from "src/providers/RouteProgressBar";
 
 import { Toaster } from "src/components/ui/sonner";
 
-import { Header } from "src/components/global/Header";
-import { Footer } from "src/components/global/Footer";
-
 import "./globals.css";
 
 const geistSans = localFont({
@@ -61,13 +58,7 @@ export default function RootLayout({
                 routerConfig={extractRouterConfig(ourFileRouter)}
               />
 
-              <div className="min-h-screen flex flex-col bg-background text-foreground">
-                <Header />
-
-                {children}
-
-                <Footer />
-              </div>
+              {children}
 
               <Toaster position="bottom-center" />
             </RouteProgressBar>
