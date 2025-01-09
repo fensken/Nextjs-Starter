@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useTransition } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";

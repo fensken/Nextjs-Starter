@@ -6,6 +6,7 @@ import {
   FormInput,
   Palette,
   Mail,
+  Component,
 } from "lucide-react";
 
 export const features = [
@@ -16,31 +17,17 @@ export const features = [
     icon: Lock,
   },
   {
-    title: "Email",
+    title: "Theming",
     description:
-      "Automate emails and email marketing with resend and react-email.",
-    icon: Mail,
-    link: "/docs/email",
-    demoLink: "/demo/email",
+      "Beautiful dark and light mode with Tailwind CSS and shadcn/ui",
+    icon: Palette,
   },
   {
-    title: "Database",
-    description:
-      "Type-safe database queries with Prisma ORM and automatic migrations",
-    icon: Database,
+    title: "ShadCN Components",
+    description: "Beautiful components using the shadCN library",
+    icon: Component,
   },
-  {
-    title: "Payments",
-    description:
-      "Integrated payment processing with Stripe and Paddle for global transactions",
-    icon: CreditCard,
-  },
-  {
-    title: "File Upload",
-    description:
-      "Seamless file uploads with UploadThing including drag & drop support",
-    icon: Upload,
-  },
+
   {
     title: "Form Handling",
     description: "Powerful form validation and handling with React Hook Form",
@@ -49,11 +36,35 @@ export const features = [
     demoLink: "/demo/form",
   },
   {
-    title: "Theming",
+    title: "Email",
     description:
-      "Beautiful dark and light mode with Tailwind CSS and shadcn/ui",
-    icon: Palette,
-    link: "/docs/theming",
-    demoLink: "/demo/theming",
+      "Automate emails and email marketing with resend and react-email.",
+    icon: Mail,
+    link: "/docs/email",
+    demoLink: "/demo/email",
+  },
+  {
+    title: "File Upload",
+    description:
+      "Seamless file uploads with UploadThing including drag & drop support",
+    icon: Upload,
+    link: "/docs/file-upload",
+    demoLink: "/demo/form",
+  },
+  {
+    title: "Database",
+    description:
+      "Type-safe database queries with Prisma ORM and automatic migrations",
+    icon: Database,
+    link: "/docs/database",
+    demoLink: "/demo/database",
+  },
+  {
+    title: "Payments",
+    description:
+      "Integrated payment processing with Stripe and Paddle for global transactions",
+    icon: CreditCard,
+    link: "/docs/payments",
+    demoLink: "/demo/payments",
   },
 ];

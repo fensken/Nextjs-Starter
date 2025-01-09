@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,8 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// --------------- Better Auth Schema Start -------------
+// INFO: When making changes to Auth Schema please refer to BetterAuth documentation.
+
 model User {
-  id            String    @id
+  id            String    @id @default(uuid())
   name          String
   email         String
   emailVerified Boolean
@@ -24,6 +21,9 @@ model User {
   username      String?
   sessions      Session[]
   accounts      Account[]
+
+  // This is added separately. This is not required for BetterAuth to work.
+  Blog Blog[]
 
   @@unique([email])
   @@unique([username])
@@ -74,3 +74,22 @@ model Verification {
 
   @@map("verification")
 }
+
+// --------------- Better Auth Schema End -------------
+
+// --------------- Application Schema Start -------------
+
+model Blog {
+  id            String  @id @default(uuid())
+  title         String
+  content       String
+  published     Boolean
+  featuredImage String
+  authorId      String
+  author        User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime
+  updatedAt DateTime
+}
+
+// --------------- Application Schema End -------------
