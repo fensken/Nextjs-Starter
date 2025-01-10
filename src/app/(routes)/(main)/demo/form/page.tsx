@@ -95,7 +95,6 @@ export default function BlogForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex items-center gap-2">
-                    <PenIcon className="w-4 h-4" />
                     Title
                   </FormLabel>
                   <FormControl>
@@ -117,7 +116,6 @@ export default function BlogForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="flex items-center gap-2">
-                    <PenIcon className="w-4 h-4" />
                     Content
                   </FormLabel>
                   <FormControl>
@@ -168,7 +166,6 @@ export default function BlogForm() {
                     />
                   </FormControl>
                   <FormLabel className="flex items-center gap-2 cursor-pointer">
-                    <EyeIcon className="w-4 h-4" />
                     Publish immediately
                   </FormLabel>
                 </FormItem>
